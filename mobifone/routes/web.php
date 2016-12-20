@@ -12,9 +12,30 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-Route::group(['prefix'=>'admin'],function(){
+    return view('trangchu');
+});  
+Route::get('trangchu','pagescontroller@gettrangchu');
+Route::get('khdn/trangchu','pagescontroller@gettrangchudn');
+Route::get('trangchu/{id}','pagescontroller@gettrangchu1');
+Route::get('goicuoc/{id}','pagescontroller@getgoicuoc');
+Route::get('goicuocdn/{id}','pagescontroller@getgoicuocdn');
+Route::get('chitietgoicuoc/{id}','pagescontroller@getctgoicuoc');
+Route::get('chitietgoicuocdn/{id}','pagescontroller@getctgoicuocdn');
+Route::get('loaitin/{id}','pagescontroller@getloaitin');
+Route::get('loaitindn/{id}','pagescontroller@getloaitindn');
+Route::get('tintuc/{id}','pagescontroller@gettintuc');
+Route::get('tintucdn/{id}','pagescontroller@gettintucdn');
+Route::get('faq','pagescontroller@getfaq');
+Route::get('faqdn','pagescontroller@getfaqdn');
+Route::get('gioithieu','pagescontroller@getgioithieu');
+Route::get('gioithieudn','pagescontroller@getgioithieudn');
+Route::get('timkiem','pagescontroller@gettimkiem');
+Route::get('timkiemdn','pagescontroller@gettimkiemdn');
+
+Route::get('admin/dangnhap','usercontroller@getdangnhap');
+Route::post('admin/dangnhap','usercontroller@postdangnhap');
+Route::get('admin/dangxuat','usercontroller@getdangxuat');
+Route::group(['prefix'=>'admin','middleware'=>'adminlogin'],function(){
        Route::group(['prefix'=>'loaikh'],function(){
             Route::get('danhsach','loaikhcontroller@getdanhsach');
             Route::get('them','loaikhcontroller@getthem');
@@ -39,6 +60,46 @@ Route::group(['prefix'=>'admin'],function(){
             Route::post('sua/{id}','goicuoccontroller@postsua');
             Route::get('xoa/{id}','goicuoccontroller@getxoa');
        });
+            Route::group(['prefix'=>'faq'],function(){
+            Route::get('danhsach','faqcontroller@getdanhsach');
+            Route::get('them','faqcontroller@getthem');
+            Route::post('them','faqcontroller@postthem');
+            Route::get('sua/{id}','faqcontroller@getsua');
+            Route::post('sua/{id}','faqcontroller@postsua');
+            Route::get('xoa/{id}','faqcontroller@getxoa');
+       });
+            Route::group(['prefix'=>'faq-detail'],function(){
+            Route::get('danhsach','faqdetailcontroller@getdanhsach');
+            Route::get('them','faqdetailcontroller@getthem');
+            Route::post('them','faqdetailcontroller@postthem');
+            Route::get('sua/{id}','faqdetailcontroller@getsua');
+            Route::post('sua/{id}','faqdetailcontroller@postsua');
+            Route::get('xoa/{id}','faqdetailcontroller@getxoa');
+       });
+            Route::group(['prefix'=>'loaitin'],function(){
+            Route::get('danhsach','loaitincontroller@getdanhsach');
+            Route::get('them','loaitincontroller@getthem');
+            Route::post('them','loaitincontroller@postthem');
+            Route::get('sua/{id}','loaitincontroller@getsua');
+            Route::post('sua/{id}','loaitincontroller@postsua');
+            Route::get('xoa/{id}','loaitincontroller@getxoa');
+       });
+            Route::group(['prefix'=>'tintuc'],function(){
+            Route::get('danhsach','tintuccontroller@getdanhsach');
+            Route::get('them','tintuccontroller@getthem');
+            Route::post('them','tintuccontroller@postthem');
+            Route::get('sua/{id}','tintuccontroller@getsua');
+            Route::post('sua/{id}','tintuccontroller@postsua');
+            Route::get('xoa/{id}','tintuccontroller@getxoa');
+       });
+          Route::group(['prefix'=>'user'],function(){
+            Route::get('danhsach','usercontroller@getdanhsach');
+            Route::get('them','usercontroller@getthem');
+            Route::post('them','usercontroller@postthem');
+            Route::get('sua/{id}','usercontroller@getsua');
+            Route::post('sua/{id}','usercontroller@postsua');
+            Route::get('xoa/{id}','usercontroller@getxoa');
+        });
           Route::group(['prefix'=>'ajax'],function(){
           	   Route::get('dichvu/{id}','ajaxcontroller@getdichvu');
           });

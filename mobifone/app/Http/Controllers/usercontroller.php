@@ -47,7 +47,7 @@ class usercontroller extends Controller
     function getxoa($id){
     	$user = user::find($id);
     	$user->delete();
-    	return redirect('admin/user/xoa/'.$id)->with('thongbao','Xóa thành công');
+    	return redirect('admin/user/danhsach')->with('thongbao','Xóa thành công');
     }
     function getdangnhap(){
     	return view('admin.dangnhap');
